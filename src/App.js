@@ -2,9 +2,6 @@ import logo from "./logo.svg";
 import "./App.css";
 import "./components/Click.js";
 import ReactHowler from "react-howler";
-import "./components/Ramdom.js";
-
-
 
 function App() {
   return (
@@ -15,7 +12,6 @@ function App() {
         
       </a-assets>
       <a-sky src="#sky1" />
-
       <a-entity
         class="orbit"
         position="0 0 0"
@@ -36,7 +32,12 @@ function App() {
       ></a-entity>
       <a-camera>
         <a-cursor color="red" position="0 0 -1">
-        
+          <a-entity
+           gltf-model="url(/ped.glb)"
+            scale="0.6 0.6 0.6"
+            position="-0.100 -1 -4"
+            rotation="-3 180.66 3"
+          ></a-entity>
 
           <a-entity>
             <a-text
@@ -54,12 +55,13 @@ function App() {
           </a-entity>
         </a-cursor>
       </a-camera>
+      <ReactHowler
+        src={require("../src/sound/rat.mp3")}
+        playing={true}
+      ></ReactHowler>
+      ;
     </a-scene>
   );
 }
 
 export default App;
-<ReactHowler
-  src={require("../src/sound/rat.mp3")}
-  playing={true}
-></ReactHowler>;
