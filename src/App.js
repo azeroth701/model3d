@@ -2,6 +2,29 @@ import logo from "./logo.svg";
 import "./App.css";
 import "./components/Click.js";
 import ReactHowler from "react-howler";
+import "./components/Ramdom.js";
+
+export const sizes = {
+  sm: "640px",
+  md: "768px",
+  lg: "1024px",
+  xl: "1280px",
+  "2xl": "1536px",
+};
+
+function isMatch(media) {
+  const query = `(min-width: ${sizes[media]})`;
+  return window.matchMedia(query).matches;
+}
+
+function findClosest(queries) {
+  for (let i = queries.length - 1; i >= 0; i--) {
+    if (isMatch(queries[i])) {
+      return queries[i];
+    }
+  }
+  return "sm";
+}
 
 function App() {
   return (
@@ -15,12 +38,7 @@ function App() {
         ></a-asset-item>
       </a-assets>
       <a-sky src="#sky1" />
-      <a-entity
-        class="orbit"
-        position="0 3 0"
-        rotation="0 0 0"
-        animation="property: rotation; to: 0 360 360; loop: true; dur: 40000;  easing: linear"
-      ></a-entity>
+
       <a-entity
         class="orbit"
         position="0 0 0"
@@ -45,8 +63,9 @@ function App() {
             gltf-model="#cityModel"
             scale="0.6 0.6 0.6"
             position="-0.100 -1 -4"
-            rotation="-3 180.66 4"
+            rotation="-3 180.66 3"
           ></a-entity>
+
           <a-entity>
             <a-text
               value="0 meteoritos cazados"
@@ -63,13 +82,12 @@ function App() {
           </a-entity>
         </a-cursor>
       </a-camera>
-      <ReactHowler
-        src={require("../src/sound/rat.mp3")}
-        playing={true}
-      ></ReactHowler>
-      ;
     </a-scene>
   );
 }
 
 export default App;
+<ReactHowler
+  src={require("../src/sound/rat.mp3")}
+  playing={true}
+></ReactHowler>;
